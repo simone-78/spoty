@@ -1,0 +1,45 @@
+* {
+    color: #fff;
+}
+
+body {
+    background: linear-gradient(180deg, #073041 14%, rgba(0,0,0,1) 31%);
+    min-height: 100%;
+}
+
+.album {
+    background-color: #333;
+    border-radius: 5px;
+}
+
+.section_title {
+    color: #fff;
+    padding: 20px 0;
+    margin-bottom: 16px;
+}
+
+.img_title {
+    max-height: 64px;
+    border-radius: 5px 0;
+}
+.card-music {
+    max-width: 184px;
+    padding: 16px;
+    margin: 0;
+}
+.card-body {
+    padding: 18px 0;
+}
+
+.lista_card {
+    max-height: 270px;
+}
+.card-music p {
+    font-size: 14px;
+    color: rgb(194, 194, 194);
+}
+
+.card-title {
+    margin: 0;
+    
+}
