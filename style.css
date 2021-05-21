@@ -3,7 +3,7 @@
 }
 
 body {
-    background: linear-gradient(180deg, #073041 14%, rgba(0,0,0,1) 31%);
+    background: linear-gradient(180deg, #073041 14%, rgb(18,18,18) 31%);
     min-height: 100%;
 }
 
@@ -49,4 +49,8 @@ body {
 
 .section_body {
     padding: 20px 32px 0
+}
+
+.colore {
+    background-color: black;
 }
