@@ -41,5 +41,12 @@ body {
 
 .card-title {
     margin: 0;
-    
+}
+
+.menu {
+    width: 28px;
+}
+
+.section_body {
+    padding: 20px 32px 0
 }
