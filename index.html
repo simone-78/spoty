@@ -47,11 +47,13 @@
                     </form>
                 </div>
                 <h2 class="section_title" id="cambia">Buongiorno</h2>
+                <div id="loading"></div>
                 <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 first-row" id="riga">
 
                 </div>
                 <!-- Stimola la mente -->
                 <div>
+
                     <div class="d-flex justify-content-between py-4">
                         <h3>Stimola la mente</h3>
                         <p>VISUALIZZA TUTTO</p>
@@ -83,6 +85,7 @@
 
         const form = document.getElementById('form');
         const artist = document.getElementById('artist');
+
         let query = 'metallica'
 
 
@@ -145,31 +148,37 @@
                         `
                     }
                 })
-            
+
 
         }
         form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                console.log(artist.value);
-                const submitButton = document.getElementById('search-button');
-                query = artist.value
-                console.log(query);
-                div.innerHTML = "";
-                second_row.innerHTML = "";
-                third_row.innerHTML = "";
-                
-                try {
-                    submitButton.classList.add('disabled')
-                    const res = await fetchData()
-                    return res
+            e.preventDefault();
+            console.log(artist.value);
+            const isLoading = document.getElementById('loading');
+            const submitButton = document.getElementById('search-button');
+            query = artist.value
+            console.log(query);
+            div.innerHTML = "";
+            second_row.innerHTML = "";
+            third_row.innerHTML = "";
 
-                } catch (error) {
-                    console.log(error);
-                }
-                finally {
-                    submitButton.classList.remove('disabled')
-                }
-            })
+            try {
+                isLoading.innerHTML += `
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>`
+                submitButton.classList.add('disabled')
+                const res = await fetchData()
+                return res
+
+            } catch (error) {
+                console.log(error);
+            }
+            finally {
+                isLoading.innerHTML = ""
+                submitButton.classList.remove('disabled')
+            }
+        })
         //console.log(fetchData());
         fetchData();
     </script>
