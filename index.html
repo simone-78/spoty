@@ -138,30 +138,34 @@
                     for (let i = 0; i < 8; i++) {
                         const el = data.data[i];
                         second_row.innerHTML += `
-                            <div class="card-music" onclick='send_link("${el.link}")' style="cursor: pointer">
+                        <a href='/album.html?id=${el.album.id}'>
+                            <div class="card-music")' style="cursor: pointer">
                                 <img src=${el.album.cover} class="card-img-top">
                                 <div class="card-body">
                                     <h5 class="card-title">${el.album.title}</h5>
                                     <p class="card-text">${el.artist.name}</p>
                                 </div>
-                            </div>`
+                            </div>
+                        </a>`
                     }
 
                     for (let i = 8; i < 16; i++) {
                         const el = data.data[i];
                         third_row.innerHTML += `
-                            <div class="card-music" onclick='send_link("${el.link}")' style="cursor: pointer">
+                        <a href='/album.html?id=${el.album.id}'>
+                            <div class="card-music" onclick='send_link("${el.preview}")' style="cursor: pointer">
                                 <img src=${el.album.cover} class="card-img-top">
                                 <div class="card-body">
                                     <h5 class="card-title">${el.album.title}</h5>
                                     <p class="card-text">${el.artist.name}</p>
                                 </div>
-                            </div>`
+                            </div>
+                        </a>`
                     }
                 })
         }
 
-        function send_link(params) {
+        /*function send_link(params) {
             console.log(params);
             document.getElementById('audio').innerHTML = `
             <iframe src="${params}" width="300" height="300" marginwidth="0"
@@ -169,11 +173,11 @@
             `
 
 
-            /*document.getElementById('audio').innerHTML = `
-                <audio controls src='https://www.deezer.com/track/2114406'>
+            document.getElementById('audio').innerHTML = `
+                <audio autoplay controls src='${params}'>
                             Your browser does not support the <code>audio</code> element.
-                </audio>`*/
-        }
+                </audio>`
+        }*/
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
