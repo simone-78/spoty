@@ -14,21 +14,70 @@
 </head>
 
 <body>
-    <div class="container-fluid" >
-       <div class="misica">
-           <div class="box">
-               <img src="" alt="">
-                <audio controls  >
-                    <source src="">
-                </audio>
-           </div>
-       </div>
+    <div class="container-fluid">
+        <div class="d-flex justify-content-around">
+            <div class="album-page ">
+                <div class="d-flex flex-column justify-content-center box" id="music_box"></div>
+                <audio preload="none" style="background-color:#ffff;" controls autoplay class="w-100" id="audio_src"></audio>
+            </div>
+            <div class="album_track">
+                <ul id="track_list">
+
+                </ul>
+            </div>
+        </div>
     </div>
 </body>
 
 
 <script>
 
-    const params = new URLSearchParams(window.location.search)
-    console.log(params)
+    const params = new URLSearchParams(window.location.search);
+    console.log(params);
+    let id = params.get('id');
+    console.log(id)
+
+    const music_box = document.querySelector('#music_box')
+    const audio_src = document.querySelector('#audio_src')
+    const track_list = document.querySelector('#track_list')
+
+
+    const fetchData = async () => {
+        const url = `https://deezerdevs-deezer.p.rapidapi.com/album/${id}`;
+        const headers = new Headers({
+            'Content-Type': 'application/json',
+            'X-RapidAPI-Key': 'f161ea8bc3mshab645d4c70fa59bp1953ebjsneba375d35ae8',
+            'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
+        })
+        const res = fetch(url, {
+            method: "GET",
+            mode: "cors",
+            headers: headers
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+
+
+
+                music_box.innerHTML += `
+                <h1 class="p-4">${data.title}</h1>
+                <img class="immagine" src="${data.cover_big}">
+                `;
+
+                for (let i = 0; i < data.tracks.data.length; i++) {
+                    const tracks = data.tracks.data[i];
+                    console.log(tracks)
+
+                    audio_src.innerHTML += `
+                    <source src="${tracks.preview}">
+                    `
+
+                    track_list.innerHTML += `
+                    <li>${tracks.title}</li>
+                    `
+                }
+            })
+    }
+    fetchData();
 </script>
